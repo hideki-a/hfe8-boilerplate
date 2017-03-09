@@ -1,0 +1,10 @@
+node_modules/
+bower_components/
+backup/
+dist/
+documents/
+archives/
+materials/
+test/
+.tmp/
+npm-debug.log
