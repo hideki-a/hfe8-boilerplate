@@ -1,0 +1,19 @@
+@import "_normalize.css";
+
+:root {
+	--color: #000;
+}
+
+body {
+	padding: 10px;
+	color: var(--color);
+	font-size: 1rem;
+}
+
+// For PostCSS Test
+.foo {
+	display: flex;
+	& .bar {
+		color: #cc0000;
+	}
+}

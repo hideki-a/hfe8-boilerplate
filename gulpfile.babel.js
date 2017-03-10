@@ -2,7 +2,7 @@
  *
  *  Web Starter Kit
  *  Copyright 2015 Google Inc. All rights reserved.
- *  Copyright 2016 Hideki Abe All rights reserved.
+ *  Copyright 2017 Hideki Abe All rights reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
-// import perfectionist from 'perfectionist';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -41,30 +40,20 @@ gulp.task('pug', () => {
     .pipe(gulp.dest('dist/'))
 });
 
-// Compile and automatically prefix stylesheets
-// gulp.task('styles', () => {
-//   const AUTOPREFIXER_BROWSERS = [
-//     'last 2 versions',
-//     'ie >= 9',
-//   ];
-//   const PROCESSORS = [
-//     autoprefixer({ browsers: AUTOPREFIXER_BROWSERS }),
-//     mqpacker(),
-//     // perfectionist(),
-//   ];
-
-//   // For best performance, don't add Sass partials to `gulp.src`
-//   return gulp.src([
-//     '../src/css/*.css'
-//   ])
-//     .pipe($.newer('.tmp/css'))
-//     .pipe($.sourcemaps.init())
-//     .pipe($.postcss(PROCESSORS))
-//     .pipe(gulp.dest('.tmp/css'))
-//     .pipe($.size({ title: 'styles' }))
-//     .pipe($.sourcemaps.write('./'))
-//     .pipe(gulp.dest('../dist/css'));
-// });
+// Transforms and automatically prefix stylesheets
+gulp.task('styles', () => {
+  return gulp.src([
+    'src/**/*.css',
+    '!src/**/_*.css',
+  ])
+    .pipe($.newer('.tmp/css'))
+    .pipe($.sourcemaps.init())
+    .pipe($.postcss())
+    .pipe(gulp.dest('.tmp/css'))
+    .pipe($.size({title: 'styles'}))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest('dist/'));
+});
 
 // Clean output directory
 gulp.task('clean:tmp', () => del(['.tmp'], { dot: true }));
@@ -81,13 +70,13 @@ gulp.task('serve', () => {
   });
 
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
-  // gulp.watch(['src/css/*.css'], ['styles', reload]);
+  gulp.watch(['src/css/*.css', 'postcss.config.js'], ['styles', reload]);
 });
 
 // Default task
 gulp.task('default', ['clean:tmp'], cb =>
   runSequence(
-    ['pug'],
+    ['pug', 'styles'],
     'serve',
     cb
   )
@@ -96,7 +85,7 @@ gulp.task('default', ['clean:tmp'], cb =>
 // Publish production files
 gulp.task('publish', ['clean:dist'], cb =>
   runSequence(
-    ['pug'],
+    ['pug', 'styles'],
     'styles',
     cb
   )
