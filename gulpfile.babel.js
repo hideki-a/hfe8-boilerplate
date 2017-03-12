@@ -31,7 +31,7 @@ const reload = browserSync.reload;
 
 // Generate HTML
 gulp.task('pug', () => {
-  return gulp.src('src/**/*.pug')
+  return gulp.src(['src/**/*.pug', '!src/includes/*.pug'])
     .pipe($.pug({
       pretty: true
     }).on('error', $.notify.onError((error) => {

@@ -4,19 +4,48 @@ html(lang="ja")
 		meta(charset="UTF-8")
 		title Skyward Design New Boilerplate
 		link(rel="stylesheet", href="/css/base.css")
+		include includes/analytics.pug
 	body
-		h1.home-Title Skyward Design New Boilerplate
-		p 新しいBoilerplateを研究中です。
-		h2 SwiftでFizzBuzz
-		pre
-			| (1...100).map { switch ($0 % 3, $0 % 5) {
-			|     case (0, 0): return "Fizz Buzz"
-			|     case (0, _): return "Fizz"
-			|     case (_, 0): return "Buzz"
-			|     case (_, _): return "\($0)"
-			| } }.forEach { print($0) }
+		main
+			h1.cmn-Hdg_L1_01 Skyward Design New Boilerplate
+			p 新しいBoilerplateを研究中です。
+			p.
+				Using regular tags can help keep your lines short,
+				but interpolated tags may be easier to #[em visualize]
+				whether the tags and text are whitespace-separated.
+			div
+				| Don't
+				|
+				button touch
+				|
+				| me!
+			p Many code editors by default will remove trailing whitespace on save. 
+			ul
+				li: a(href="https://www.mitsue.co.jp/") ミツエーリンクス
+				li: a(href="http://www.b-architects.com/") ビジネス・アーキテクツ
+				li: a(href="https://about.yahoo.co.jp/") Yahoo! JAPAN
+			ul
+				li
+					a(href="https://www.anothersky.pw/2017/02/the_tour_of_misia_love_bebop_yokohama_arena.html") THE TOUR OF MISIA LOVE BEBOP 横浜アリーナ公演（第1日目）
+					|
+					|
+					span 2017年02月11日
+				li
+					a(href="https://www.anothersky.pw/2017/01/the_tour_of_misia_love_bebop.html") THE TOUR OF MISIA LOVE BEBOP 広島公演
+					|
+					|
+					span 2017年01月15日
+			h2 SwiftでFizzBuzz
+			pre
+				| (1...100).map { switch ($0 % 3, $0 % 5) {
+				|     case (0, 0): return "Fizz Buzz"
+				|     case (0, _): return "Fizz"
+				|     case (_, 0): return "Buzz"
+				|     case (_, _): return "\($0)"
+				| } }.forEach { print($0) }
 
-		p.home-Test_Scripts_paragraph.js-test-01 JavaScriptのテストです。
-		div.home-Test_Scripts_div.js-test-01 JavaScriptのテストです。
+		div.home-Test_Scripts
+			p.home-Test_Scripts_paragraph.js-test-01 JavaScriptのテストです。
+			div.home-Test_Scripts_div.js-test-01 JavaScriptのテストです。
 
 		script(src="/js/main.min.js")
