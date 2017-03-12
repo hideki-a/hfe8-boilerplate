@@ -55,6 +55,36 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/'));
 });
 
+// Lint JavaScript
+gulp.task('eslint', () =>
+  gulp.src(['src/js/*.js'])
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.if(!browserSync.active, $.eslint.failAfterError()))
+);
+
+// Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
+gulp.task('scripts', () =>
+    gulp.src([
+      // Note: Since we are not using useref in the scripts build pipeline,
+      //       you need to explicitly list your scripts here in the right order
+      //       to be correctly concatenated
+      'src/js/main.js'
+      // Other scripts
+    ])
+      .pipe($.newer('.tmp/js'))
+      .pipe($.sourcemaps.init())
+      .pipe($.babel())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest('.tmp/js'))
+      .pipe($.concat('main.min.js'))
+      .pipe($.uglify({preserveComments: 'some'}))
+      // Output files
+      .pipe($.size({title: 'scripts'}))
+      .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest('dist/js'))
+);
+
 // Clean output directory
 gulp.task('clean:tmp', () => del(['.tmp'], { dot: true }));
 gulp.task('clean:dist', () => del(['dist'], { dot: true, force: true }));
@@ -71,12 +101,13 @@ gulp.task('serve', () => {
 
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
   gulp.watch(['src/css/*.css', 'postcss.config.js'], ['styles', reload]);
+  gulp.watch(['src/js/*.js'], ['eslint', 'scripts', reload]);
 });
 
 // Default task
 gulp.task('default', ['clean:tmp'], cb =>
   runSequence(
-    ['pug', 'styles'],
+    ['pug', 'styles', 'eslint', 'scripts'],
     'serve',
     cb
   )
@@ -85,7 +116,7 @@ gulp.task('default', ['clean:tmp'], cb =>
 // Publish production files
 gulp.task('publish', ['clean:dist'], cb =>
   runSequence(
-    ['pug', 'styles'],
+    ['pug', 'styles', 'eslint', 'scripts'],
     'styles',
     cb
   )
