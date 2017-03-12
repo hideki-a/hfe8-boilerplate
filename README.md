@@ -13,9 +13,13 @@
 ### Pug
 
 - [Getting Started &ndash; Pug](https://pugjs.org/api/getting-started.html)
-- [Jade について。](https://gist.github.com/japboy/5402844)
+- [静的HTMLのためのテンプレートエンジン - Jade | CodeGrid](https://app.codegrid.net/entry/template-for-coding-3)
 - [【Pug】ゴリラでもわかるJade改めPug入門 &#8211; Snaplog](https://blog.mismithportfolio.com/web/20160326pugbegin)
 
 ### New CSS syntax
 
 - [cssnext - Use tomorrow’s CSS syntax, today.](http://cssnext.io/)
+
+### Enduring CSS
+
+- [Enduring CSSの設計思想 | CodeGrid](https://app.codegrid.net/series/2016-ecss)
