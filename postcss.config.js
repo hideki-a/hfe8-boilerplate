@@ -5,6 +5,7 @@ module.exports = (ctx) => ({
       'browsers': [
         'last 2 versions',
         'ie 11',
+        'Firefox ESR',
         'Android >= 4.2',
       ]
     },
