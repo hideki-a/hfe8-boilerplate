@@ -10,6 +10,10 @@ module.exports = (ctx) => ({
       ]
     },
     'postcss-nesting': {},
+    'perfectionist': ctx.env === 'development' ? {
+      'indentChar': '\t',
+      'indentSize': 1,
+    } : {},
     cssnano: ctx.env === 'production' ? {} : false
   }
 });
