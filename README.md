@@ -10,6 +10,10 @@
 
 ## Reference Sites
 
+### HTML
+
+- [HTML Standard](https://html.spec.whatwg.org/multipage/)
+
 ### Pug
 
 - [Getting Started &ndash; Pug](https://pugjs.org/api/getting-started.html)
