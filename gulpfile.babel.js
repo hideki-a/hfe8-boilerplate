@@ -86,8 +86,7 @@ gulp.task('scripts', () =>
 );
 
 // Clean output directory
-gulp.task('clean:tmp', () => del(['.tmp'], { dot: true }));
-gulp.task('clean:dist', () => del(['dist'], { dot: true, force: true }));
+gulp.task('clean', () => del(['.tmp', 'dist'], { dot: true, force: true }));
 
 // Serve
 // ghostMode: Clicks, Scrolls & Form inputs on any device will be mirrored to all others.
@@ -105,7 +104,7 @@ gulp.task('serve', () => {
 });
 
 // Default task
-gulp.task('default', ['clean:tmp'], cb =>
+gulp.task('default', ['clean'], cb =>
   runSequence(
     ['pug', 'styles', 'eslint', 'scripts'],
     'serve',
@@ -114,10 +113,9 @@ gulp.task('default', ['clean:tmp'], cb =>
 );
 
 // Publish production files
-gulp.task('publish', ['clean:dist'], cb =>
+gulp.task('publish', ['clean'], cb =>
   runSequence(
     ['pug', 'styles', 'eslint', 'scripts'],
-    'styles',
     cb
   )
 );
