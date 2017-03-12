@@ -17,6 +17,6 @@ insert_final_newline = false
 indent_style = space
 indent_size = 4
 
-[{gulpfile.babel.js,postcss.config.js}]
+[{package.json,gulpfile.babel.js,postcss.config.js}]
 indent_style = space
 indent_size = 2
