@@ -105,6 +105,9 @@ gulp.task('clean', () => del(['.tmp', 'dist'], { dot: true, force: true }));
 
 // Serve
 // ghostMode: Clicks, Scrolls & Form inputs on any device will be mirrored to all others.
+//
+// server: ['dist/', 'src/']
+// Images load from src directory. Other files load from dist directory.
 gulp.task('serve', () => {
   browserSync({
     server: ['dist/', 'src/'],
