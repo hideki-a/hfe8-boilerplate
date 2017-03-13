@@ -43,13 +43,17 @@ gulp.task('pug', () => {
 // Transforms and automatically prefix stylesheets
 gulp.task('styles', () => {
   return gulp.src([
-    'src/**/*.css',
-    '!src/**/_*.css',
+    'src/**/*.pcss',
+    '!src/**/_*.pcss',
   ])
     .pipe($.newer('.tmp/css'))
     .pipe($.sourcemaps.init())
     .pipe($.postcss())
     .pipe(gulp.dest('.tmp/css'))
+    .pipe($.rename((path) => {
+      path.dirname = path.dirname.replace('pcss', 'css');
+      path.extname = ".css";
+    }))
     .pipe($.size({title: 'styles'}))
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest('dist/'));
@@ -99,7 +103,7 @@ gulp.task('serve', () => {
   });
 
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
-  gulp.watch(['src/css/*.css', 'postcss.config.js'], ['styles', reload]);
+  gulp.watch(['src/**/*.pcss', 'postcss.config.js'], ['styles', reload]);
   gulp.watch(['src/js/*.js'], ['eslint', 'scripts', reload]);
 });
 
