@@ -4,7 +4,7 @@
 
 ## How To Use
 
-1. `npm i`でパッケージをインストールします。
+1. `yarn`（[Yarn](https://yarnpkg.com/en/)を入れていない場合は`npm i`）でパッケージをインストールします。
 2. `npm start`でgulpのデフォルトタスクを実行します。
 3. Enjoy Coding!
 
@@ -27,3 +27,7 @@
 ### Enduring CSS
 
 - [Enduring CSSの設計思想 | CodeGrid](https://app.codegrid.net/series/2016-ecss)
+
+### Yarn
+
+- [Yarn](https://yarnpkg.com/en/)
