@@ -89,6 +89,17 @@ gulp.task('scripts', () =>
       .pipe(gulp.dest('dist/js'))
 );
 
+// Optimize images
+gulp.task('images', () =>
+  gulp.src('src/**/images/*')
+    .pipe($.cache($.imagemin({
+      progressive: true,
+      interlaced: true
+    })))
+    .pipe(gulp.dest('dist'))
+    .pipe($.size({title: 'images'}))
+);
+
 // Clean output directory
 gulp.task('clean', () => del(['.tmp', 'dist'], { dot: true, force: true }));
 
@@ -96,7 +107,7 @@ gulp.task('clean', () => del(['.tmp', 'dist'], { dot: true, force: true }));
 // ghostMode: Clicks, Scrolls & Form inputs on any device will be mirrored to all others.
 gulp.task('serve', () => {
   browserSync({
-    server: 'dist/',
+    server: ['dist/', 'src/'],
     port: 3501,
     ghostMode: false,
     startPath: '/',
@@ -105,6 +116,7 @@ gulp.task('serve', () => {
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
   gulp.watch(['src/**/*.pcss', 'postcss.config.js'], ['styles', reload]);
   gulp.watch(['src/js/*.js'], ['eslint', 'scripts', reload]);
+  gulp.watch(['src/**/images/*'], reload);
 });
 
 // Default task
@@ -119,7 +131,7 @@ gulp.task('default', ['clean'], cb =>
 // Publish production files
 gulp.task('publish', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'eslint', 'scripts'],
+    ['pug', 'styles', 'eslint', 'scripts', 'images'],
     cb
   )
 );
