@@ -9,7 +9,6 @@ module.exports = (ctx) => ({
         'Android >= 4.2',
       ]
     },
-    'postcss-nesting': {},
     'perfectionist': ctx.env === 'development' ? {
       'indentChar': '\t',
       'indentSize': 1,
