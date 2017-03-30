@@ -1,8 +1,6 @@
 {
   "name": "hfe8-boilerplate",
   "version": "1.0.0",
-  "description": "",
-  "main": "gulpfile.babel.js",
   "scripts": {
     "start": "NODE_ENV=development gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +9,11 @@
     "node": ">=0.12"
   },
   "author": "Hideki Abe",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "devDependencies": {
     "babel-core": "^6.23.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-register": "^6.23.0",
     "browser-sync": "^2.18.8",
@@ -35,14 +34,11 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.1.0",
+    "normalize.css": "^5.0.0",
     "perfectionist": "^2.4.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.1.0",
     "postcss-load-config": "^1.2.0",
     "run-sequence": "^1.2.2"
-  },
-  "dependencies": {
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "normalize.css": "^5.0.0"
   }
 }
