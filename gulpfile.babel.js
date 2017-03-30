@@ -78,9 +78,7 @@ gulp.task('scripts', () =>
     ])
       .pipe($.newer('.tmp/js'))
       .pipe($.sourcemaps.init())
-      .pipe($.babel({
-        presets: ['es2015']
-      }))
+      .pipe($.babel())
       .pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/js'))
       .pipe($.concat('main.min.js'))

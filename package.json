@@ -42,6 +42,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "normalize.css": "^5.0.0"
   }
 }
