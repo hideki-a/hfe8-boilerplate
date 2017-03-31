@@ -9,7 +9,6 @@
             const containerElem = elem.parentNode;
 
             if (imageUrl) {
-                console.log(containerElem);
                 containerElem.style.backgroundImage = "url('" + imageUrl + "');";
                 containerElem.classList.add("js-Compat_objectFit");
             }
