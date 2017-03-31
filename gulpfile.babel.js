@@ -63,7 +63,7 @@ gulp.task('styles', () => {
 
 // Lint JavaScript
 gulp.task('eslint', () =>
-  gulp.src(['src/js/*.js'])
+  gulp.src(['src/**/js/src/*.js'])
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.if(!browserSync.active, $.eslint.failAfterError()))
@@ -72,36 +72,22 @@ gulp.task('eslint', () =>
 // Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
 gulp.task('scripts', () =>
     gulp.src([
-      // Note: Since we are not using useref in the scripts build pipeline,
-      //       you need to explicitly list your scripts here in the right order
-      //       to be correctly concatenated
-      'src/js/main.js'
-      // Other scripts
-    ])
-      .pipe($.newer('.tmp/js'))
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/js'))
-      .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
-      // Output files
-      .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/js'))
-);
-
-gulp.task('scripts:hfe8', () =>
-    gulp.src([
-        'src/hfe8/js/src/*.js',
+        'src/**/js/src/*.js',
       ])
-      .pipe($.newer('.tmp/hfe8/js'))
+      // .pipe($.newer('.tmp/js'))
+      // .pipe($.sourcemaps.init())
       .pipe($.babel())
-      .pipe(gulp.dest('.tmp/js'))
+      // .pipe($.sourcemaps.write())
+      // .pipe(gulp.dest('.tmp/js'))
+      // .pipe($.concat('main.min.js'))
+      // .pipe($.uglify({preserveComments: 'some'}))
+      // Output files
+      // .pipe($.size({title: 'scripts'}))
       .pipe($.rename((path) => {
         path.dirname = path.dirname.replace('src', '');
       }))
-      .pipe(gulp.dest('dist/hfe8/js'))
+      // .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest('dist'))
 );
 
 // Optimize images
@@ -116,13 +102,13 @@ gulp.task('images', () =>
 );
 
 // Copy all files at the root level (app)
-gulp.task('copy:hfe8', () =>
+gulp.task('copy', () =>
   gulp.src([
-    'src/hfe8/**/*.js',
-    '!src/hfe8/js/src/*.js',
+    'src/**/*.js',
+    '!src/**/js/src/*.js',
   ], {
     dot: true
-  }).pipe(gulp.dest('dist/hfe8'))
+  }).pipe(gulp.dest('dist'))
     .pipe($.size({title: 'copy'}))
 );
 
@@ -144,15 +130,14 @@ gulp.task('serve', () => {
 
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
   gulp.watch(['src/**/*.pcss', 'postcss.config.js'], ['styles', reload]);
-  gulp.watch(['src/js/*.js'], ['scripts', reload]);
-  gulp.watch(['src/hfe8/js/src/run.js'], ['scripts:hfe8', reload]);
+  gulp.watch(['src/**/js/src/*.js'], ['eslint', 'scripts', reload]);
   gulp.watch(['src/**/images/*'], reload);
 });
 
 // Default task
 gulp.task('default', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'scripts', 'scripts:hfe8'],
+    ['pug', 'styles', 'scripts'],
     'serve',
     cb
   )
@@ -161,7 +146,7 @@ gulp.task('default', ['clean'], cb =>
 // Publish production files
 gulp.task('publish', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'scripts', 'scripts:hfe8', 'images', 'copy:hfe8'],
+    ['pug', 'styles', 'scripts', 'images', 'copy'],
     cb
   )
 );
