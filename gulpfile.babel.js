@@ -32,11 +32,13 @@ const reload = browserSync.reload;
 // Generate HTML
 gulp.task('pug', () => {
   return gulp.src(['src/**/*.pug', '!src/includes/*.pug'])
+    .pipe($.newer('.tmp/pug'))
     .pipe($.pug({
       pretty: true
     }).on('error', $.notify.onError((error) => {
       return error.message;
     })))
+    .pipe(gulp.dest('.tmp/pug'))
     .pipe(gulp.dest('dist/'))
 });
 
