@@ -1,0 +1,109 @@
+@import "_normalize.css";
+
+/* TODO: 複数ファイルで変数の利用 */
+:root {
+	--key-color: #d4413d;
+	--border-color: #ccc;
+}
+
+/*
+   TODO: 游ゴシック・游明朝のウエイト問題をチェック
+   https://app.codegrid.net/entry/2016-choosing-fonts-3#toc-3
+ */
+@font-face {
+	font-family: MyYuGothic;
+	font-weight: normal;
+	src: local(YuMincho-Medium),
+		 local("Yu Mincho Medium");
+}
+
+body {
+	margin: 0;
+	line-height: 1.5;
+	color: #333;
+	font-family: "Times New Roman", "Hiragino Mincho ProN", MyYuGothic, YuMincho, Meiryo, serif;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.st-Header {
+	& .st-Header_Inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0 auto;
+		padding: 20px 0;
+		max-width: 1020px;
+	}
+	& .st-Header_Shopname {
+		margin: 0;
+		line-height: 1.307;
+		color: var(--key-color);
+		font-size: 1.625rem;
+		& .st-Header_ShopnameAddition {
+			display: block;
+			line-height: 1;
+			font-size: 0.8125rem;
+			font-weight: normal;
+		}
+	}
+}
+
+.st-Nav_List {
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0;
+	& >li {
+		&:not(:last-child) {
+			margin-right: 50px;
+		}
+	}
+}
+
+.st-Contents {
+	margin-bottom: 100px;
+}
+
+.st-Footer {
+	padding: 30px;
+	background-color: #393944;
+}
+
+.st-Footer_Copyright {
+	display: block;
+	color: #fff;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.cmn-ContentsContainer {
+	margin: 0 auto;
+	max-width: 1020px;
+}
+
+.cmn-LayoutImage {
+	& + :matches(p, ul, ol, dl, table) {
+		margin-top: 0;
+	}
+}
+
+.cmn-LayoutImage_L1 {
+	display: flex;
+	flex-direction: row-reverse;
+	& .cmn-LayoutImage_Image {
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+.cmn-LayoutImage_R1 {
+	display: flex;
+	& .cmn-LayoutImage_Image {
+		margin-bottom: 20px;
+		margin-left: 20px;
+	}
+}
