@@ -118,14 +118,14 @@ gulp.task('serve', () => {
 
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
   gulp.watch(['src/**/*.pcss', 'postcss.config.js'], ['styles', reload]);
-  gulp.watch(['src/js/*.js'], ['eslint', 'scripts', reload]);
+  gulp.watch(['src/js/*.js'], ['scripts', reload]);
   gulp.watch(['src/**/images/*'], reload);
 });
 
 // Default task
 gulp.task('default', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'eslint', 'scripts'],
+    ['pug', 'styles', 'scripts'],
     'serve',
     cb
   )
@@ -134,7 +134,7 @@ gulp.task('default', ['clean'], cb =>
 // Publish production files
 gulp.task('publish', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'eslint', 'scripts', 'images'],
+    ['pug', 'styles', 'scripts', 'images'],
     cb
   )
 );
