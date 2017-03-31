@@ -1,6 +1,7 @@
 # hfe8-boilerplate
 
-[広島フロントエンド勉強会 Vol.8](https://hfe.connpass.com/event/52671/)に向けて、新しいBoilerplateを作成していきます。
+[広島フロントエンド勉強会 Vol.8](https://hfe.connpass.com/event/52671/)に向けて、[generator-skyward](https://www.npmjs.com/package/generator-skyward)を更新するBoilerplateを作成していきます。    
+…という予定で始めたのですが、サンプルファイルのコーディングまでしました。
 
 ## How To Use
 
@@ -31,3 +32,8 @@
 ### Yarn
 
 - [Yarn](https://yarnpkg.com/en/)
+
+## ToDo
+
+- スマートフォン対応
+- pugタスクの`.newer()`について再検討
