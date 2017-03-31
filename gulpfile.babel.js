@@ -91,6 +91,19 @@ gulp.task('scripts', () =>
       .pipe(gulp.dest('dist/js'))
 );
 
+gulp.task('scripts:hfe8', () =>
+    gulp.src([
+        'src/hfe8/js/src/*.js',
+      ])
+      .pipe($.newer('.tmp/hfe8/js'))
+      .pipe($.babel())
+      .pipe(gulp.dest('.tmp/js'))
+      .pipe($.rename((path) => {
+        path.dirname = path.dirname.replace('src', '');
+      }))
+      .pipe(gulp.dest('dist/hfe8/js'))
+);
+
 // Optimize images
 gulp.task('images', () =>
   gulp.src('src/**/images/*')
@@ -100,6 +113,17 @@ gulp.task('images', () =>
     })))
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'images'}))
+);
+
+// Copy all files at the root level (app)
+gulp.task('copy:hfe8', () =>
+  gulp.src([
+    'src/hfe8/**/*.js',
+    '!src/hfe8/js/src/*.js',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/hfe8'))
+    .pipe($.size({title: 'copy'}))
 );
 
 // Clean output directory
@@ -121,13 +145,14 @@ gulp.task('serve', () => {
   gulp.watch(['src/**/*.pug'], ['pug', reload]);
   gulp.watch(['src/**/*.pcss', 'postcss.config.js'], ['styles', reload]);
   gulp.watch(['src/js/*.js'], ['scripts', reload]);
+  gulp.watch(['src/hfe8/js/src/run.js'], ['scripts:hfe8', reload]);
   gulp.watch(['src/**/images/*'], reload);
 });
 
 // Default task
 gulp.task('default', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'scripts'],
+    ['pug', 'styles', 'scripts', 'scripts:hfe8'],
     'serve',
     cb
   )
@@ -136,7 +161,7 @@ gulp.task('default', ['clean'], cb =>
 // Publish production files
 gulp.task('publish', ['clean'], cb =>
   runSequence(
-    ['pug', 'styles', 'scripts', 'images'],
+    ['pug', 'styles', 'scripts', 'scripts:hfe8', 'images', 'copy:hfe8'],
     cb
   )
 );

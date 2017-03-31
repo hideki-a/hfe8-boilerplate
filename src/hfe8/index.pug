@@ -10,7 +10,7 @@ html(lang="ja")
 	body
 		div.home-Hero
 			div.home-Hero_Image
-				img(src="/hfe8/images/pic_index_07.jpg", alt="")
+				img.js-Fallback_objectFit(src="/hfe8/images/pic_index_07.jpg", alt="")
 			div.home-Hero_Logo
 				img(src="/hfe8/images/logo_site.png", alt="町のケーキ屋さん INOUE")
 
@@ -48,21 +48,21 @@ html(lang="ja")
 						div.home-Products_NameContainer
 							h3.home-Products_Name いちごのケーキ
 							div.home-Products_Photo
-								img(src="/hfe8/images/pic_index_03.jpg", alt="写真：イチゴのケーキ")
+								img.js-Fallback_objectFit(src="/hfe8/images/pic_index_03.jpg", alt="写真：イチゴのケーキ")
 						p.home-Products_RecommendMsg
 							| 大きないちごがのったケーキ。いちごの酸味とクリームの甘さがベストマッチ。大きないちごがのったケーキ。いちごの酸味とクリームの甘さがベストマッチ。
 					section.home-Products_Item
 						div.home-Products_NameContainer
 							h3.home-Products_Name アップルパイ
 							div.home-Products_Photo
-								img(src="/hfe8/images/pic_index_02.jpg", alt="写真：アップルパイ")
+								img.js-Fallback_objectFit(src="/hfe8/images/pic_index_02.jpg", alt="写真：アップルパイ")
 						p.home-Products_RecommendMsg
 							| 当店人気No.1のアップルパイ。りんごの自然な甘みを最大限まで引き出した、香り豊かなアップルパイです。手土産にもってこいなちょうどいい大きさ。当店が自信を持ってお贈りする格別の一品です。当店人気No.1のアップルパイ。りんごの自然な甘みを最大限まで引き出した、香り豊かなアップルパイです。手土産にもってこいなちょうどいい大きさ。当店が自信を持ってお贈りする格別の一品です。
 					section.home-Products_Item
 						div.home-Products_NameContainer
 							h3.home-Products_Name パウンドケーキ
 							div.home-Products_Photo
-								img(src="/hfe8/images/pic_index_04.jpg", alt="写真：パウンドケーキ")
+								img.js-Fallback_objectFit(src="/hfe8/images/pic_index_04.jpg", alt="写真：パウンドケーキ")
 						p.home-Products_RecommendMsg
 							| 10種類のフルーツがいっぱい入ったパウンドケーキ。バターの香りとフルーツの甘みとの絶妙な味わいをお楽しみください。10種類のフルーツがいっぱい入ったパウンドケーキ。バターの香りとフルーツの甘みとの絶妙な味わいをお楽しみください。
 				div.home-Products_Link
@@ -115,3 +115,7 @@ html(lang="ja")
 
 		footer.st-Footer
 			small.st-Footer_Copyright &copy; 2017 INOUE.
+
+		script(src="/hfe8/js/components/modernizr-custom.js")
+		script(src="/hfe8/js/components/polyfill.min.js")
+		script(src="/hfe8/js/run.js")
