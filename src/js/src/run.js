@@ -1,6 +1,6 @@
 "use strict";
 
-(function (window, document, undefined) {
+(function (window, document) {
     if (!Modernizr.objectfit) {
         // https://medium.com/@primozcigler/neat-trick-for-css-object-fit-fallback-on-edge-and-other-browsers-afbc53bbb2c3
         const fallbackElems = document.querySelectorAll(".js-Fallback_objectFit");
