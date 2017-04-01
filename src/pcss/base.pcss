@@ -1,6 +1,9 @@
 @import "_normalize.css";
 
+
 /* TODO: 複数ファイルで変数の利用 */
+@custom-selector :--pointer-enter :hover, :focus;
+
 :root {
 	--key-color: #d4413d;
 	--border-color: #ccc;
@@ -60,6 +63,9 @@ img {
 	& >.st-Nav_Item {
 		&:not(:last-child) {
 			margin-right: 50px;
+		}
+		& a:--pointer-enter {
+			/* do something */
 		}
 	}
 }
