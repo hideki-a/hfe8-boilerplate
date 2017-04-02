@@ -72,14 +72,21 @@
 	text-align: center;
 }
 
+/*
+   NOTE: Item Layout Pattern
+   - .home-Products_Item x 4
+   - .home-Products_Item x 2, .home-Products_RecommendItem x 1
+   - .home-Products_RecommendItem x 2
+ */
+
 .home-Products_Items {
 	display: flex;
 	margin-bottom: 60px;
 	& .home-Products_Item {
-		width: 25%;
+		flex: 0 1 25%;
 	}
 	& .home-Products_RecommendItem {
-		width: 50%;
+		flex-grow: 2;
 	}
 	& .home-Products_NameContainer {
 		display: flex;
